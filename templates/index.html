@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<div class="text-center mt-5">
+
+    <h1>💰 Xpenser</h1>
+
+    <h4 class="text-muted">
+        Track Smart. Spend Better.
+    </h4>
+
+    <br>
+
+    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
+        Get Started
+    </a>
+
+</div>
+
+{% endblock %}
