@@ -8,8 +8,8 @@ from flask_login import (
 )
 
 from config import Config
-from models import db, User
-from forms import RegisterForm, LoginForm
+from models import db, User, Expense
+from forms import RegisterForm, LoginForm, ExpenseForm
 
 app = Flask(__name__)
 
@@ -98,9 +98,44 @@ def login():
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    return "<h1>🎉 Welcome to Xpenser Dashboard!</h1>"
 
+    expenses = Expense.query.filter_by(
+        user_id=current_user.id
+    ).order_by(
+        Expense.date.desc()
+    ).all()
 
+    total_expense = sum(expense.amount for expense in expenses)
+
+    return render_template(
+        "dashboard.html",
+        expenses=expenses,
+        total_expense=total_expense
+    )
+
+@app.route("/add-expense", methods=["GET", "POST"])
+@login_required
+def add_expense():
+
+    form = ExpenseForm()
+
+    if form.validate_on_submit():
+
+        expense = Expense(
+            amount=form.amount.data,
+            category=form.category.data,
+            description=form.description.data,
+            user_id=current_user.id
+        )
+
+        db.session.add(expense)
+        db.session.commit()
+
+        flash("Expense added successfully!", "success")
+
+        return redirect(url_for("dashboard"))
+
+    return render_template("add_expense.html", form=form)
 # ---------------- LOGOUT ----------------
 @app.route("/logout")
 @login_required

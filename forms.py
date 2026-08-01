@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
+from wtforms import FloatField, SelectField, TextAreaField
 
 
 class RegisterForm(FlaskForm):
@@ -37,7 +38,7 @@ class RegisterForm(FlaskForm):
     )
 
     submit = SubmitField("Create Account")
-    
+
 class LoginForm(FlaskForm):
 
     email = StringField(
@@ -56,3 +57,28 @@ class LoginForm(FlaskForm):
     )
 
     submit = SubmitField("Login")
+
+class ExpenseForm(FlaskForm):
+
+    amount = FloatField(
+        "Amount (₹)",
+        validators=[DataRequired()]
+    )
+
+    category = SelectField(
+        "Category",
+        choices=[
+            ("Food", "Food"),
+            ("Transport", "Transport"),
+            ("Shopping", "Shopping"),
+            ("Bills", "Bills"),
+            ("Entertainment", "Entertainment"),
+            ("Healthcare", "Healthcare"),
+            ("Education", "Education"),
+            ("Other", "Other")
+        ]
+    )
+
+    description = TextAreaField("Description")
+
+    submit = SubmitField("Add Expense")
