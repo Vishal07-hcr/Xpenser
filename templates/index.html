@@ -6,25 +6,17 @@
 
 <div class="text-center mt-5">
 
-    <h1 class="display-3">💰 Xpenser</h1>
+    <h1>💰 Xpenser</h1>
 
-    <h4 class="text-muted mb-4">
+    <h4 class="text-muted">
         Track Smart. Spend Better.
     </h4>
 
-    {% if current_user.is_authenticated %}
+    <br>
 
-        <a href="{{ url_for('dashboard') }}" class="btn btn-success btn-lg">
-            Go to Dashboard
-        </a>
-
-    {% else %}
-
-        <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">
-            Get Started
-        </a>
-
-    {% endif %}
+    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
+        Get Started
+    </a>
 
 </div>
 
