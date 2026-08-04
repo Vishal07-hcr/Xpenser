@@ -1,22 +1,98 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}
+Home
+{% endblock %}
 
 {% block content %}
 
-<div class="text-center mt-5">
+<div class="container">
 
-    <h1>💰 Xpenser</h1>
+    <div class="row justify-content-center align-items-center"
+         style="min-height:80vh;">
 
-    <h4 class="text-muted">
-        Track Smart. Spend Better.
-    </h4>
+        <div class="col-lg-8 text-center">
 
-    <br>
+            <h1 class="display-3 fw-bold mb-3">
 
-    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
-        Get Started
-    </a>
+                💰 Xpenser
+
+            </h1>
+
+            <h2 class="text-secondary mb-3">
+
+                Track Smart. Spend Better.
+
+            </h2>
+
+            <p class="lead text-muted">
+
+                Manage your expenses effortlessly with beautiful
+                dashboards and powerful analytics.
+
+            </p>
+
+            <br>
+
+            <button
+                class="btn btn-primary btn-lg px-5 py-3 rounded-pill shadow"
+                data-bs-toggle="modal"
+                data-bs-target="#welcomeModal">
+
+                Get Started
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+
+<div class="modal fade"
+     id="welcomeModal"
+     tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content border-0 shadow-lg rounded-5">
+
+            <div class="modal-body p-5 text-center">
+
+                <h2 class="fw-bold mb-3">
+
+                    Welcome 👋
+
+                </h2>
+
+                <p class="text-muted mb-4">
+
+                    Login or create a new account to continue.
+
+                </p>
+
+                <a href="{{ url_for('login') }}"
+                   class="btn btn-primary w-100 mb-3 py-2 rounded-pill">
+
+                    🔐 Login
+
+                </a>
+
+                <a href="{{ url_for('register') }}"
+                   class="btn btn-outline-primary w-100 py-2 rounded-pill">
+
+                    ✨ Create Account
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 

@@ -1,39 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Xpenser{% endblock %}</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}XPENSER{% endblock %}</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    {% block extra_css %}
+    {% endblock %}
+
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg">
+
     <div class="container">
-        <a class="navbar-brand" href="/">💰 Xpenser</a>
+
+        <a class="navbar-brand"
+           href="{{ url_for('home') }}">
+
+            <i class="fa-solid fa-wallet"></i>
+
+            XPENSER
+
+        </a>
+
     </div>
+
 </nav>
+
+
+<!-- ================= FLASH ================= -->
 
 <div class="container mt-4">
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+
+{% if messages %}
+
+{% for category,message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show">
+
+{{message}}
+
+<button
+class="btn-close"
+data-bs-dismiss="alert">
+
+</button>
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
 {% endwith %}
+
+</div>
+
+
+<!-- ================= CONTENT ================= -->
 
 {% block content %}
 {% endblock %}
 
-</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="text-center text-white py-4 mt-5">
+
+    <small>
+
+        © 2026 XPENSER
+
+        • Track Smart. Spend Better.
+
+    </small>
+
+</footer>
+
+
+<!-- Bootstrap -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- Theme -->
+
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+{% block scripts %}
+{% endblock %}
+
 </body>
+
 </html>

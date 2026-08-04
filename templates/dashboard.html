@@ -33,6 +33,7 @@ Dashboard
             <th>Category</th>
             <th>Description</th>
             <th>Date</th>
+            <th>Actions</th>
         </tr>
 
     </thead>
@@ -50,6 +51,14 @@ Dashboard
             <td>{{ expense.description }}</td>
 
             <td>{{ expense.date.strftime('%d-%m-%Y') }}</td>
+
+<td>
+    <a href="{{ url_for('delete_expense', expense_id=expense.id) }}"
+       class="btn btn-danger btn-sm"
+       onclick="return confirm('Delete this expense?')">
+        Delete
+    </a>
+</td>
 
         </tr>
 

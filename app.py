@@ -113,6 +113,8 @@ def dashboard():
         total_expense=total_expense
     )
 
+
+# ---------------- ADD EXPENSE ----------------
 @app.route("/add-expense", methods=["GET", "POST"])
 @login_required
 def add_expense():
@@ -136,6 +138,26 @@ def add_expense():
         return redirect(url_for("dashboard"))
 
     return render_template("add_expense.html", form=form)
+
+
+# ---------------- DELETE EXPENSE ----------------
+@app.route("/delete-expense/<int:expense_id>")
+@login_required
+def delete_expense(expense_id):
+
+    expense = Expense.query.filter_by(
+        id=expense_id,
+        user_id=current_user.id
+    ).first_or_404()
+
+    db.session.delete(expense)
+    db.session.commit()
+
+    flash("Expense deleted successfully!", "success")
+
+    return redirect(url_for("dashboard"))
+
+
 # ---------------- LOGOUT ----------------
 @app.route("/logout")
 @login_required

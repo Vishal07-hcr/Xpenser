@@ -1,0 +1,211 @@
+/* ===========================
+   XPENSER DESIGN SYSTEM v2
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+
+    --primary:#4F46E5;
+    --secondary:#3B82F6;
+
+    --success:#10B981;
+    --danger:#EF4444;
+    --warning:#F59E0B;
+
+    --text:#111827;
+    --text-light:#6B7280;
+
+    --white:#ffffff;
+
+    --glass:rgba(255,255,255,.18);
+
+    --border:rgba(255,255,255,.25);
+
+    --shadow:0 10px 35px rgba(0,0,0,.15);
+
+    --bg1:#4F46E5;
+    --bg2:#3B82F6;
+    --bg3:#06B6D4;
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+    font-family:'Poppins',sans-serif;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--bg1),
+        var(--bg2),
+        var(--bg3)
+    );
+
+    background-attachment:fixed;
+
+    color:white;
+
+}
+
+/* NAVBAR */
+
+.navbar{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.navbar-brand{
+
+    color:white !important;
+
+    font-size:30px;
+
+    font-weight:700;
+
+}
+
+/* HERO */
+
+.hero{
+
+    min-height:90vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+}
+
+.hero h1{
+
+    font-size:70px;
+
+    font-weight:800;
+
+}
+
+.hero p{
+
+    font-size:20px;
+
+    opacity:.9;
+
+}
+
+/* BUTTON */
+
+.btn-main{
+
+    background:white;
+
+    color:var(--primary);
+
+    padding:15px 45px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    border:none;
+
+    transition:.3s;
+
+    text-decoration:none;
+
+}
+
+.btn-main:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+/* GLASS */
+
+.glass{
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(25px);
+
+    border-radius:25px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* FEATURE CARD */
+
+.feature-card{
+
+    padding:30px;
+
+    transition:.3s;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+/* FLOAT */
+
+.float{
+
+    animation:float 5s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
