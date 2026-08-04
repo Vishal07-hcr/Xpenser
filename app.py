@@ -48,8 +48,8 @@ def register():
         existing_user = User.query.filter_by(email=form.email.data).first()
 
         if existing_user:
-            flash("Email already exists!", "danger")
-            return render_template("register.html", form=form)
+            flash("This email is already registered. Please login.", "warning")
+            return redirect(url_for("login"))
 
         user = User(
             username=form.username.data,
