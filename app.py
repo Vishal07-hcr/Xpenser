@@ -32,6 +32,14 @@ def load_user(user_id):
 @app.route("/")
 def home():
     return render_template("index.html")
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/help")
+def help_page():
+    return render_template("help.html")
 
 
 # ---------------- REGISTER ----------------

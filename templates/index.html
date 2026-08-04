@@ -4,19 +4,48 @@
 
 {% block content %}
 
-<div class="text-center mt-5">
+<div class="container">
 
-    <h1>💰 Xpenser</h1>
+    <div class="row justify-content-center align-items-center" style="min-height:75vh;">
 
-    <h4 class="text-muted">
-        Track Smart. Spend Better.
-    </h4>
+        <div class="col-lg-7 text-center">
 
-    <br>
+            <h1 class="display-3 fw-bold mb-3">
+                💰 Xpenser
+            </h1>
 
-    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
-        Get Started
-    </a>
+            <p class="lead text-muted mb-5">
+                Track your expenses, manage your money and stay in control of your finances.
+            </p>
+
+            {% if current_user.is_authenticated %}
+
+                <a href="{{ url_for('dashboard') }}"
+                   class="btn btn-success btn-lg px-5">
+                    Go to Dashboard
+                </a>
+
+            {% else %}
+
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                    <a href="{{ url_for('login') }}"
+                       class="btn btn-primary btn-lg px-5">
+                        Login
+                    </a>
+
+                    <a href="{{ url_for('register') }}"
+                       class="btn btn-outline-primary btn-lg px-5">
+                        Create Account
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
 
 </div>
 
