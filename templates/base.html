@@ -1,39 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>{% block title %}Xpenser{% endblock %}</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
+
     <div class="container">
-        <a class="navbar-brand" href="/">💰 Xpenser</a>
+
+        <a class="navbar-brand text-white"
+           href="/">
+            💰 Xpenser
+        </a>
+
+        <button
+                id="theme-toggle"
+                class="btn btn-light">
+
+            🌙
+
+        </button>
+
     </div>
+
 </nav>
 
 <div class="container mt-4">
 
 {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+
+{% if messages %}
+
+{% for category,message in messages %}
+
+<div class="alert alert-{{category}}">
+
+{{message}}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
 {% endwith %}
 
 {% block content %}
+
 {% endblock %}
 
 </div>
 
+<script>
+
+const html=document.documentElement;
+
+const btn=document.getElementById("theme-toggle");
+
+const saved=localStorage.getItem("theme");
+
+if(saved){
+
+html.setAttribute("data-bs-theme",saved);
+
+btn.innerHTML=saved==="dark"?"☀️":"🌙";
+
+}
+
+btn.onclick=()=>{
+
+const current=html.getAttribute("data-bs-theme");
+
+const next=current==="dark"?"light":"dark";
+
+html.setAttribute("data-bs-theme",next);
+
+localStorage.setItem("theme",next);
+
+btn.innerHTML=next==="dark"?"☀️":"🌙";
+
+}
+
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
