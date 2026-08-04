@@ -24,7 +24,7 @@ Dashboard
 
 </div>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
 
     <thead>
 
@@ -42,18 +42,6 @@ Dashboard
 
         {% for expense in expenses %}
 
-        <td>
-    <form action="{{ url_for('delete_expense', expense_id=expense.id) }}"
-          method="POST"
-          onsubmit="return confirm('Delete this expense?');">
-
-        <button class="btn btn-danger btn-sm">
-            Delete
-        </button>
-
-    </form>
-</td>
-
         <tr>
 
             <td>₹ {{ expense.amount }}</td>
@@ -63,6 +51,23 @@ Dashboard
             <td>{{ expense.description }}</td>
 
             <td>{{ expense.date.strftime('%d-%m-%Y') }}</td>
+
+            <td>
+
+                <form
+                    action="{{ url_for('delete_expense', expense_id=expense.id) }}"
+                    method="POST"
+                    onsubmit="return confirm('Delete this expense?');">
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger btn-sm">
+                        Delete
+                    </button>
+
+                </form>
+
+            </td>
 
         </tr>
 
