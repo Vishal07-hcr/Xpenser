@@ -33,6 +33,7 @@ Dashboard
             <th>Category</th>
             <th>Description</th>
             <th>Date</th>
+            <th>Action</th>
         </tr>
 
     </thead>
@@ -40,6 +41,18 @@ Dashboard
     <tbody>
 
         {% for expense in expenses %}
+
+        <td>
+    <form action="{{ url_for('delete_expense', expense_id=expense.id) }}"
+          method="POST"
+          onsubmit="return confirm('Delete this expense?');">
+
+        <button class="btn btn-danger btn-sm">
+            Delete
+        </button>
+
+    </form>
+</td>
 
         <tr>
 
