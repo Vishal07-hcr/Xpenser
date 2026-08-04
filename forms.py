@@ -64,18 +64,34 @@ class ExpenseForm(FlaskForm):
         "Amount (₹)",
         validators=[DataRequired()]
     )
-
     category = SelectField(
         "Category",
         choices=[
-            ("Food", "Food"),
-            ("Transport", "Transport"),
-            ("Shopping", "Shopping"),
-            ("Bills", "Bills"),
-            ("Entertainment", "Entertainment"),
-            ("Healthcare", "Healthcare"),
-            ("Education", "Education"),
-            ("Other", "Other")
+            ("Food", "🍔 Food"),
+            ("Groceries", "🛒 Groceries"),
+            ("Travel", "🚗 Travel"),
+        ("Fuel", "⛽ Fuel"),
+        ("Shopping", "🛍 Shopping"),
+        ("Bills", "💡 Bills"),
+        ("Electricity", "⚡ Electricity"),
+        ("Water", "💧 Water"),
+        ("Internet", "🌐 Internet"),
+        ("Mobile Recharge", "📱 Mobile Recharge"),
+        ("Rent", "🏠 Rent"),
+        ("Education", "📚 Education"),
+        ("Healthcare", "🏥 Healthcare"),
+        ("Medicine", "💊 Medicine"),
+        ("Entertainment", "🎬 Entertainment"),
+        ("Subscription", "🎵 Subscription"),
+        ("Clothing", "👕 Clothing"),
+        ("Gym", "🏋️ Gym"),
+        ("Gifts", "🎁 Gifts"),
+        ("Investment", "📈 Investment"),
+        ("Savings", "💰 Savings"),
+        ("Pet", "🐶 Pet"),
+        ("Family", "👨‍👩‍👧 Family"),
+        ("Office", "💼 Office"),
+        ("Miscellaneous", "📦 Miscellaneous")
         ]
     )
 
