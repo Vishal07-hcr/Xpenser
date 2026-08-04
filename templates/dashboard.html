@@ -24,16 +24,18 @@ Dashboard
 
 </div>
 
-<table class="table table-bordered table-hover">
+{% if expenses %}
 
-    <thead>
+<table class="table table-bordered table-hover align-middle">
+
+    <thead class="table-dark">
 
         <tr>
             <th>Amount</th>
             <th>Category</th>
             <th>Description</th>
             <th>Date</th>
-            <th>Action</th>
+            <th style="width:180px;">Action</th>
         </tr>
 
     </thead>
@@ -54,18 +56,31 @@ Dashboard
 
             <td>
 
-                <form
-                    action="{{ url_for('delete_expense', expense_id=expense.id) }}"
-                    method="POST"
-                    onsubmit="return confirm('Delete this expense?');">
+                <div class="d-flex gap-2">
 
-                    <button
-                        type="submit"
-                        class="btn btn-danger btn-sm">
-                        Delete
-                    </button>
+                    <a href="{{ url_for('edit_expense', expense_id=expense.id) }}"
+                       class="btn btn-warning btn-sm">
 
-                </form>
+                        ✏ Edit
+
+                    </a>
+
+                    <form
+                        action="{{ url_for('delete_expense', expense_id=expense.id) }}"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this expense?');">
+
+                        <button
+                            type="submit"
+                            class="btn btn-danger btn-sm">
+
+                            🗑 Delete
+
+                        </button>
+
+                    </form>
+
+                </div>
 
             </td>
 
@@ -76,5 +91,17 @@ Dashboard
     </tbody>
 
 </table>
+
+{% else %}
+
+<div class="alert alert-secondary text-center">
+
+    <h4>No expenses added yet.</h4>
+
+    <p>Click <strong>Add Expense</strong> to start tracking your expenses.</p>
+
+</div>
+
+{% endif %}
 
 {% endblock %}

@@ -162,6 +162,35 @@ def delete_expense(expense_id):
 
     return redirect(url_for("dashboard"))
 
+# ---------------- EDIT EXPENSE ----------------
+@app.route("/edit-expense/<int:expense_id>", methods=["GET", "POST"])
+@login_required
+def edit_expense(expense_id):
+
+    expense = Expense.query.filter_by(
+        id=expense_id,
+        user_id=current_user.id
+    ).first_or_404()
+
+    form = ExpenseForm(obj=expense)
+
+    if form.validate_on_submit():
+
+        expense.amount = form.amount.data
+        expense.category = form.category.data
+        expense.description = form.description.data
+
+        db.session.commit()
+
+        flash("Expense updated successfully!", "success")
+
+        return redirect(url_for("dashboard"))
+
+    return render_template(
+        "edit_expense.html",
+        form=form
+    )
+
 # ---------------- LOGOUT ----------------
 @app.route("/logout")
 @login_required
