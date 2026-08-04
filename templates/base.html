@@ -55,55 +55,72 @@
 
             <ul class="navbar-nav ms-auto align-items-center">
 
-                {% if current_user.is_authenticated %}
+    {% if current_user.is_authenticated %}
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('dashboard') }}">
-                            Dashboard
-                        </a>
-                    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('add_expense') }}">
-                            Add Expense
-                        </a>
-                    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('add_expense') }}">
+                Add Expense
+            </a>
+        </li>
 
-                {% endif %}
+    {% else %}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('about') }}">
-                        About
-                    </a>
-                </li>
+        {% if request.endpoint == "login" %}
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('help_page') }}">
-                        Help
-                    </a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('register') }}">
+                    Create Account
+                </a>
+            </li>
 
-                <li class="nav-item">
-                    <button
-                        id="themeToggle"
-                        class="theme-btn nav-link">
-                        🌙
-                    </button>
-                </li>
+        {% elif request.endpoint == "register" %}
 
-                {% if current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('login') }}">
+                    Login
+                </a>
+            </li>
 
-                    <li class="nav-item ms-2">
-                        <a href="{{ url_for('logout') }}"
-                           class="btn btn-danger btn-sm">
-                            Logout
-                        </a>
-                    </li>
+        {% endif %}
 
-                {% endif %}
+    {% endif %}
 
-            </ul>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('about') }}">
+            About
+        </a>
+    </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('help_page') }}">
+            Help
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <button id="themeToggle" class="theme-btn nav-link">
+            🌙
+        </button>
+    </li>
+
+    {% if current_user.is_authenticated %}
+
+        <li class="nav-item ms-2">
+            <a href="{{ url_for('logout') }}"
+               class="btn btn-danger btn-sm">
+                Logout
+            </a>
+        </li>
+
+    {% endif %}
+
+</ul>
         </div>
 
     </div>
